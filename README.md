@@ -1,70 +1,250 @@
-# Getting Started with Create React App
+# AR ONE Gifts & Crafts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-featured multi-vendor e-commerce platform for gifts and crafts, built with React.js and Firebase.
 
-## Available Scripts
+## 🎁 Overview
 
-In the project directory, you can run:
+AR ONE Gifts & Crafts is an Amazon-like marketplace that connects talented artisans and sellers with customers who appreciate unique, handmade products. The platform supports three user roles:
 
-### `npm start`
+- **Customers**: Browse products, manage cart/wishlist, place orders, track deliveries, submit reviews
+- **Vendors**: Register stores, manage products, process orders, track earnings, handle returns
+- **Admins**: Approve vendors/products, manage users, moderate reviews, configure settings
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: React.js 19, React Router v6, Bootstrap 5, React Bootstrap
+- **Backend**: Firebase (Authentication, Firestore, Storage, Cloud Functions)
+- **Styling**: CSS3 with CSS Variables, Bootstrap
+- **Icons**: React Icons (Feather Icons)
 
-### `npm test`
+## 📁 Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+ar-gifts-crafts/
+├── public/                 # Static assets
+├── src/
+│   ├── components/        # Reusable components
+│   │   ├── common/        # Navbar, Footer, Loading, ProtectedRoute
+│   │   └── product/       # ProductCard, etc.
+│   ├── config/            # Firebase configuration
+│   ├── contexts/          # React contexts (Auth, Cart, Wishlist)
+│   ├── pages/             # Page components
+│   │   ├── Admin/         # Admin dashboard
+│   │   ├── Auth/          # Login, Register, ForgotPassword
+│   │   ├── Cart/          # Shopping cart
+│   │   ├── Home/          # Homepage
+│   │   ├── Product/       # Product detail
+│   │   └── Vendor/        # Vendor dashboard & registration
+│   ├── services/          # Firebase services (CRUD operations)
+│   ├── App.js             # Main app with routing
+│   ├── App.css            # Global styles
+│   └── index.js           # Entry point
+├── functions/             # Firebase Cloud Functions
+├── firestore.rules        # Firestore security rules
+├── storage.rules          # Storage security rules
+├── firebase.json          # Firebase configuration
+└── firestore.indexes.json # Firestore indexes
+```
 
-### `npm run build`
+## 🛠️ Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js 18+ installed
+- Firebase account and project created
+- Firebase CLI installed (`npm install -g firebase-tools`)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Clone and Install
 
-### `npm run eject`
+```bash
+cd ar-gifts-crafts
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 2. Firebase Configuration
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com)
+2. Enable Authentication (Email/Password)
+3. Create a Firestore database
+4. Enable Storage
+5. Copy your Firebase config to `.env`:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```env
+REACT_APP_FIREBASE_API_KEY=your-api-key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your-project-id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+REACT_APP_FIREBASE_APP_ID=your-app-id
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 3. Deploy Security Rules
 
-## Learn More
+```bash
+firebase login
+firebase init
+firebase deploy --only firestore:rules,storage:rules
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 4. Deploy Cloud Functions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+cd functions
+npm install
+cd ..
+firebase deploy --only functions
+```
 
-### Code Splitting
+### 5. Run Development Server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm start
+```
 
-### Analyzing the Bundle Size
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📋 Features Implemented
 
-### Making a Progressive Web App
+### Customer Module
+- ✅ User registration and authentication
+- ✅ Product browsing and search
+- ✅ Shopping cart with localStorage + Firestore sync
+- ✅ Wishlist management
+- ✅ Product detail pages
+- ⏳ Checkout and payment integration
+- ⏳ Order tracking
+- ⏳ Review submission
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Vendor Module
+- ✅ Vendor registration (multi-step form)
+- ✅ Vendor dashboard with stats
+- ✅ Product management
+- ⏳ Order processing
+- ⏳ Earnings and payout tracking
+- ⏳ Analytics
 
-### Advanced Configuration
+### Admin Module
+- ✅ Admin dashboard with overview
+- ✅ Vendor management (approve/reject)
+- ✅ User management
+- ⏳ Product moderation
+- ⏳ Category management
+- ⏳ Coupon management
+- ⏳ Reports and analytics
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Security
+- ✅ Firebase Authentication integration
+- ✅ Role-based access control (Customer, Vendor, Admin)
+- ✅ Firestore security rules
+- ✅ Storage security rules
+- ✅ Protected routes
 
-### Deployment
+## 🔒 Database Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+users/
+  {userId}/
+    - uid, email, displayName, phone, role, status, addresses[], createdAt
 
-### `npm run build` fails to minify
+vendors/
+  {vendorId}/
+    - userId, businessName, businessEmail, status, commissionRate, 
+      totalEarnings, availableBalance, bankDetails{}, documents{}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+products/
+  {productId}/
+    - name, description, price, salePrice, images[], category, 
+      vendorId, vendorName, stock, status, rating, reviewCount
+
+orders/
+  {orderId}/
+    - orderId, customerId, items[], vendorOrders[], totalAmount,
+      orderStatus, paymentStatus, shippingAddress{}
+
+reviews/
+  {reviewId}/
+    - productId, vendorId, customerId, rating, comment, status, vendorReply{}
+
+carts/
+  {userId}/
+    - items[]
+
+wishlists/
+  {userId}/
+    - items[]
+
+categories/
+  {categoryId}/
+    - name, slug, image, parentId, status, order
+
+coupons/
+  {couponId}/
+    - code, discountType, discountValue, usageLimit, status
+
+notifications/
+  {notificationId}/
+    - userId, type, title, message, read, createdAt
+```
+
+## 🚀 Deployment
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Deploy to Firebase Hosting
+
+```bash
+firebase deploy --only hosting
+```
+
+### Deploy Everything
+
+```bash
+firebase deploy
+```
+
+## 🔧 Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+REACT_APP_FIREBASE_API_KEY=
+REACT_APP_FIREBASE_AUTH_DOMAIN=
+REACT_APP_FIREBASE_PROJECT_ID=
+REACT_APP_FIREBASE_STORAGE_BUCKET=
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
+REACT_APP_FIREBASE_APP_ID=
+```
+
+## 📝 Available Scripts
+
+- `npm start` - Run development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run eject` - Eject from Create React App
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- React.js team for the amazing framework
+- Firebase team for the comprehensive backend services
+- Bootstrap team for the UI components
+- All contributors and artisans who make this platform possible
+
+---
+
+**AR ONE Gifts & Crafts** - Connecting Artisans with Art Lovers ❤️

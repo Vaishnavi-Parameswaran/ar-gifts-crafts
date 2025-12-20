@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "AR ONE",
+  "name": "AR ONE Gifts & Crafts",
+  "description": "Your one-stop destination for unique handmade gifts and crafts",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,11 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#e94560",
+  "background_color": "#ffffff",
+  "categories": [
+    "shopping",
+    "lifestyle"
+  ],
+  "orientation": "portrait-primary"
 }

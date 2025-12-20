@@ -1,0 +1,11 @@
+{
+    "name": "seed-scripts",
+    "version": "1.0.0",
+    "description": "Scripts for AR ONE Gifts & Crafts",
+    "scripts": {
+        "seed": "node seedData.js"
+    },
+    "dependencies": {
+        "firebase-admin": "^11.11.0"
+    }
+}

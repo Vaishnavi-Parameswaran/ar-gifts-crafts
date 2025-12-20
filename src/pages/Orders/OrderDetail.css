@@ -1,0 +1,457 @@
+/* Order Detail Page Styles */
+
+.order-detail-page {
+    background: #f8f9fa;
+    min-height: calc(100vh - 200px);
+    padding: 40px 0 120px;
+    /* Increased bottom padding to prevent footer overlap */
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+.order-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.order-detail-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.order-detail-header p {
+    color: #666;
+    margin: 0;
+}
+
+/* Order Status Card */
+.order-status-card,
+.order-items-card,
+.address-card,
+.summary-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    height: fit-content;
+    /* Prevent stretching */
+}
+
+.order-status-card .card-body,
+.order-items-card .card-body {
+    padding: 25px;
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.status-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.order-progress {
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.order-progress .progress-bar {
+    /* Background handled by variant prop */
+    transition: width 0.6s ease;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 25px;
+}
+
+.progress-labels span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.progress-labels span.completed {
+    color: #28a745;
+}
+
+.progress-labels span svg {
+    font-size: 1rem;
+}
+
+.tracking-info {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Order Timeline */
+.order-timeline {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+.order-timeline h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 20px;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+}
+
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.timeline-content strong {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.timeline-content span {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Order Items Card */
+.order-items-card .card-header {
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding: 20px 25px;
+}
+
+.order-items-card .card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.order-item-detail {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    align-items: center;
+}
+
+.order-item-detail:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+.order-item-detail img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.order-item-detail .item-info {
+    flex: 1;
+}
+
+.order-item-detail .item-name {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.order-item-detail .item-name:hover {
+    color: var(--primary-color);
+}
+
+.order-item-detail .vendor-name {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 3px;
+}
+
+.order-item-detail .item-qty {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.order-item-detail .item-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Address Card */
+.address-card .card-header,
+.summary-card .card-header {
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding: 10px 15px;
+}
+
+.address-card .card-header h3,
+.summary-card .card-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.address-card .card-body {
+    padding: 15px;
+}
+
+.address-card h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.address-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 4px;
+    /* Tighter lines */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Summary Card */
+.summary-card .card-body {
+    padding: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #666;
+}
+
+.summary-row.discount {
+    color: #28a745;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 2px solid #eee;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap;
+}
+
+.payment-method span {
+    color: #666;
+}
+
+@media (max-width: 991px) {
+    .order-detail-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .progress-labels {
+        display: none;
+    }
+
+    .order-item-detail {
+        flex-wrap: wrap;
+    }
+
+    .order-item-detail .item-price {
+        width: 100%;
+        text-align: right;
+        margin-top: 10px;
+    }
+}
+
+/* Print Styles for Invoice */
+/* Print Styles for Invoice */
+@media print {
+
+    /* Hide Global Navigation and Footer */
+    .top-bar,
+    .main-navbar,
+    .category-nav,
+    .main-footer,
+    /* Hide Page-Specific Controls */
+    .back-link,
+    .order-actions-card,
+    .tracking-info button,
+    .order-detail-header button,
+    .mobile-menu-btn,
+    .nav-icons {
+        display: none !important;
+    }
+
+    /* Reset Main Layout */
+    body,
+    html {
+        background: white !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .order-detail-page {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: white !important;
+        min-height: auto !important;
+    }
+
+    /* Container Full Width */
+    .container {
+        max-width: 100% !important;
+        padding: 0 40px !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Force Side-by-Side Layout to match screenshot */
+    .row {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 20px;
+    }
+
+    .col-lg-8 {
+        width: 65% !important;
+        flex: 0 0 65% !important;
+        max-width: 65% !important;
+    }
+
+    .col-lg-4 {
+        width: 35% !important;
+        flex: 0 0 35% !important;
+        max-width: 35% !important;
+    }
+
+    /* Card Styling for Print */
+    .card {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        margin-bottom: 20px !important;
+        break-inside: avoid !important;
+        background: white !important;
+    }
+
+    .card-header {
+        background-color: #f8f9fa !important;
+        border-bottom: 1px solid #ddd !important;
+        padding: 15px 20px !important;
+    }
+
+    .card-body {
+        padding: 20px !important;
+    }
+
+    /* Typography Checks */
+    .order-detail-header {
+        margin-bottom: 30px !important;
+        border-bottom: 2px solid #333;
+        padding-bottom: 20px;
+    }
+
+    .order-detail-header h1 {
+        font-size: 24pt !important;
+        color: #000 !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* Ensure text is dark and sharp */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    div {
+        color: #000 !important;
+        text-shadow: none !important;
+    }
+
+    /* Optimize Badges for Print (Outline style to save ink) */
+    .badge {
+        background: transparent !important;
+        border: 1px solid #333 !important;
+        color: #000 !important;
+        font-weight: bold;
+    }
+
+    /* Links */
+    a {
+        text-decoration: none !important;
+        color: #000 !important;
+    }
+
+    /* Hide scrollbars */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}

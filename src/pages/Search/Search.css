@@ -1,0 +1,118 @@
+/* Search Page Styles */
+
+.search-page {
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.search-header {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+    padding: 40px 0;
+}
+
+.search-form-large {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
+    padding: 8px 8px 8px 25px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-form-large .search-icon {
+    color: #999;
+    font-size: 1.25rem;
+    margin-right: 15px;
+}
+
+.search-form-large .form-control {
+    border: none;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    flex: 1;
+}
+
+.search-form-large .form-control:focus {
+    box-shadow: none;
+}
+
+.search-form-large .btn {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+}
+
+.search-info {
+    margin-bottom: 30px;
+}
+
+.search-info h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.search-info p {
+    color: #666;
+    margin: 0;
+}
+
+/* No Results */
+.no-results,
+.no-query {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+.no-results h3,
+.no-query h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.no-results p,
+.no-query p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+    .search-header {
+        padding: 25px 0;
+    }
+
+    .search-form-large {
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .search-form-large .search-icon {
+        display: none;
+    }
+
+    .search-form-large .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 12px 15px;
+    }
+
+    .search-form-large .btn {
+        width: 100%;
+    }
+}

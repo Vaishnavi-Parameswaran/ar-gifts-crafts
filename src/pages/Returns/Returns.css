@@ -1,0 +1,97 @@
+.returns-page {
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.returns-page h1.page-title {
+    text-align: center;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.policy-section {
+    background-color: #f8f9fa;
+    /* Very light grey */
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+}
+
+.policy-section h3 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.policy-section h3:first-child {
+    margin-top: 0;
+}
+
+.policy-section ul {
+    padding-left: 1.2rem;
+}
+
+.policy-section li {
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.policy-section p {
+    color: #495057;
+    line-height: 1.6;
+}
+
+/* Request Form Section */
+.request-form-container {
+    background-color: #9cb0c9;
+    /* Muted blue-grey to match screenshot */
+    padding: 3rem;
+    border-radius: 8px;
+    color: #000;
+}
+
+.request-form-container h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #212529;
+}
+
+.request-form-container label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.request-form-container .form-control {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+}
+
+.request-form-container .submit-btn {
+    background-color: #198754;
+    /* Bootstrap success green */
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.request-form-container .submit-btn:hover {
+    background-color: #157347;
+}
+
+.upload-note {
+    font-size: 0.85rem;
+    color: #495057;
+    margin-top: 0.5rem;
+    display: block;
+    text-align: right;
+}

@@ -1,0 +1,74 @@
+// Firebase Storage Security Rules
+// Deploy using: firebase deploy --only storage
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isValidImage() {
+      return request.resource.contentType.matches('image/.*') &&
+             request.resource.size < 5 * 1024 * 1024; // 5MB max
+    }
+    
+    function isValidDocument() {
+      return (request.resource.contentType.matches('image/.*') ||
+              request.resource.contentType == 'application/pdf') &&
+             request.resource.size < 10 * 1024 * 1024; // 10MB max
+    }
+    
+    // Product Images
+    match /products/{fileName} {
+      // Anyone can read product images
+      allow read: if true;
+      
+      // Authenticated users (vendors) can upload
+      allow write: if isAuthenticated() && isValidImage();
+    }
+    
+    // Category Images
+    match /categories/{fileName} {
+      // Anyone can read category images
+      allow read: if true;
+      
+      // Only via admin operations
+      allow write: if isAuthenticated() && isValidImage();
+    }
+    
+    // Vendor Assets
+    match /vendors/{vendorId}/{fileName} {
+      // Anyone can read vendor logos/banners
+      allow read: if true;
+      
+      // Vendors can upload their own assets
+      allow write: if isAuthenticated() && 
+                     isOwner(vendorId) && 
+                     isValidDocument();
+    }
+    
+    // User Avatars
+    match /users/{userId}/{fileName} {
+      // Anyone can read avatars
+      allow read: if true;
+      
+      // Users can upload their own avatar
+      allow write: if isAuthenticated() && 
+                     isOwner(userId) && 
+                     isValidImage();
+    }
+    
+    // Review Images
+    match /reviews/{fileName} {
+      allow read: if true;
+      allow write: if isAuthenticated() && isValidImage();
+    }
+  }
+}
