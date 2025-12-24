@@ -1,0 +1,181 @@
+.vendor-profile-page {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.vendor-banner {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #e9ecef;
+}
+
+.vendor-header-section {
+    position: relative;
+    margin-top: -80px;
+    z-index: 10;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.vendor-logo-wrapper {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.vendor-logo-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.vendor-title-badge {
+    background: #ffffff;
+    padding: 15px 40px;
+    border-radius: 60px;
+    display: inline-block;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+.vendor-title-badge h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+
+.info-card {
+    background: #fff;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: #333;
+}
+
+.rating-display {
+    text-align: center;
+    padding: 15px;
+}
+
+.rating-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #333;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.rating-stars {
+    color: #ffc107;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.contact-list .form-control {
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Reviews List Styles */
+.review-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Nav Tabs Customization */
+.vendor-tabs .nav-tabs {
+    border: none;
+    /* Remove the bottom line that was overlapping */
+    margin-bottom: 60px;
+    gap: 15px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 50px;
+    display: inline-flex;
+    /* Make it a pill container */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.review-header {
+    margin-bottom: 40px;
+}
+
+.vendor-tabs .nav-item {
+    margin-bottom: 0;
+}
+
+.vendor-tabs .nav-link {
+    color: #666;
+    font-weight: 600;
+    border: none !important;
+    padding: 8px 25px;
+    /* Reduced vertical and horizontal padding to make the black button smaller */
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    background: transparent;
+    font-size: 0.9rem;
+    /* Slightly smaller text for a more compact look */
+}
+
+.vendor-tabs .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.vendor-tabs .nav-link.active {
+    color: #fff !important;
+    background: #000 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.vendor-tabs .tab-content {
+    margin-top: 80px;
+    /* Increased gap even further (from 40px to 80px) to move products down */
+    text-align: left;
+    /* Keep content left-aligned even if parent is centered */
+}
+
+/* Owner Action Buttons */
+.vendor-title-badge .btn {
+    font-size: 0.85rem;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+}

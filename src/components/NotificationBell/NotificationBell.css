@@ -1,0 +1,234 @@
+/* Notification Bell Component Styles */
+
+.notification-bell-dropdown .dropdown-toggle {
+    text-decoration: none;
+    color: var(--text-color, #333);
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.notification-bell-dropdown .dropdown-toggle:hover {
+    color: var(--primary-color, #4f46e5);
+}
+
+.notification-bell-toggle {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.notification-bell-toggle:hover,
+.notification-bell-toggle:focus,
+.notification-bell-toggle:active {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.notification-badge {
+    font-size: 0.65rem;
+    padding: 0.25em 0.45em;
+    min-width: 18px;
+}
+
+.notification-dropdown-menu {
+    width: 380px;
+    max-width: 90vw;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.notification-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+.notification-header h6 {
+    font-size: 1rem;
+}
+
+.notification-header .btn-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.notification-header .btn-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notification-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.notification-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.notification-item {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.notification-item:hover {
+    background-color: rgba(79, 70, 229, 0.05);
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item.unread {
+    background-color: rgba(79, 70, 229, 0.03);
+}
+
+.notification-item.unread:hover {
+    background-color: rgba(79, 70, 229, 0.08);
+}
+
+.unread-indicator {
+    width: 8px;
+    height: 8px;
+    background: #4f46e5;
+    border-radius: 50%;
+    margin-left: 4px;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(79, 70, 229, 0.1);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.notification-content h6 {
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+}
+
+.notification-content p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+    color: #666;
+}
+
+.notification-footer {
+    background-color: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+}
+
+.notification-footer .btn-link {
+    text-decoration: none;
+    color: #4f46e5;
+    font-weight: 500;
+}
+
+.notification-footer .btn-link:hover {
+    color: #3730a3;
+    text-decoration: underline;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .notification-dropdown-menu {
+        background-color: #1a1a1a;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .notification-item {
+        border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .notification-item:hover {
+        background-color: rgba(79, 70, 229, 0.15);
+    }
+
+    .notification-content h6 {
+        color: #e5e5e5;
+    }
+
+    .notification-content p {
+        color: #999;
+    }
+
+    .notification-footer {
+        background-color: #0d0d0d;
+        border-top-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+    .notification-dropdown-menu {
+        width: calc(100vw - 2rem);
+        right: 1rem !important;
+        left: auto !important;
+    }
+
+    .notification-list {
+        max-height: 300px;
+    }
+
+    .notification-content h6 {
+        font-size: 0.85rem;
+    }
+
+    .notification-content p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-menu.show {
+    animation: slideDown 0.2s ease-out;
+}
+
+/* Hide default dropdown arrow */
+.notification-bell-toggle::after {
+    display: none !important;
+}
+
+/* Ensure label matches navbar style */
+.nav-icon-label {
+    font-size: 0.75rem;
+    margin-top: 2px;
+    font-weight: 500;
+}

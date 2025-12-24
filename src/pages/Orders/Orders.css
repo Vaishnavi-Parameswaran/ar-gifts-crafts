@@ -1,0 +1,245 @@
+/* Orders Page Styles */
+
+.orders-page {
+    background: #f8f9fa;
+    min-height: calc(100vh - 200px);
+    padding: 40px 0 80px;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.orders-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.search-box {
+    position: relative;
+    width: 300px;
+}
+
+.search-box .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.search-box .form-control {
+    padding-left: 45px;
+    border-radius: 25px;
+    border: 2px solid #e0e0e0;
+}
+
+.search-box .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+/* Orders Tabs */
+.orders-tabs .nav-link {
+    color: #666;
+    font-weight: 500;
+    border: none;
+    padding: 12px 20px;
+}
+
+.orders-tabs .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.orders-tabs .nav-link.active {
+    color: var(--primary-color);
+    background: none;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* Order Card */
+.order-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.order-card .card-header {
+    background: white;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.order-meta .order-id {
+    display: flex;
+    gap: 8px;
+    font-size: 1rem;
+}
+
+.order-meta .order-id span {
+    color: #666;
+}
+
+.order-meta .order-date {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 3px;
+}
+
+.order-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.order-card .card-body {
+    padding: 20px;
+}
+
+/* Order Items */
+.order-items {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.order-item {
+    display: flex;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.order-item:not(:last-child) {
+    border-bottom: 1px dashed #eee;
+}
+
+.order-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.order-item .item-details h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.order-item .item-details p {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Order Footer */
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-total span {
+    color: #666;
+    margin-right: 10px;
+}
+
+.order-total strong {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.order-actions .btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 20px;
+}
+
+/* No Orders */
+.no-orders {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.no-orders-icon {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+.no-orders h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.no-orders p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.shop-btn {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border: none;
+    padding: 14px 40px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.shop-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #e85a5a 100%);
+}
+
+@media (max-width: 768px) {
+    .orders-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .order-card .card-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .order-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .order-actions {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .order-actions .btn {
+        flex: 1;
+        justify-content: center;
+    }
+}

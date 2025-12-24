@@ -1,0 +1,204 @@
+/* Vendor Registration Styles */
+
+.vendor-register-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 40px 0 80px;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+.register-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.register-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Register Card */
+.register-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.register-card .card-body {
+    padding: 40px;
+}
+
+/* Progress Bar */
+.registration-progress {
+    margin-bottom: 40px;
+}
+
+.registration-progress .progress {
+    height: 6px;
+    border-radius: 3px;
+    background: #e9ecef;
+    margin-bottom: 25px;
+}
+
+.registration-progress .progress-bar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+}
+
+.step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #999;
+    transition: all 0.3s ease;
+}
+
+.step-indicator.active .step-number {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: white;
+}
+
+.step-indicator.completed .step-number {
+    background: #28a745;
+    color: white;
+}
+
+.step-indicator span {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.step-indicator.active span,
+.step-indicator.completed span {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Form Steps */
+.form-step h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+.form-step .form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+.form-step .form-control,
+.form-step .form-select {
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.form-step .form-control:focus,
+.form-step .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.form-navigation .btn {
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.next-btn,
+.submit-btn {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border: none;
+    margin-left: auto;
+}
+
+.next-btn:hover,
+.submit-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #e85a5a 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .register-card .card-body {
+        padding: 25px 20px;
+    }
+
+    .step-indicators {
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+
+    .step-indicator span {
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+
+    .form-navigation {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-navigation .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .next-btn,
+    .submit-btn {
+        margin-left: 0;
+        order: -1;
+    }
+}
