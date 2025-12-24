@@ -275,42 +275,142 @@
     margin: 0;
 }
 
-/* Track Page */
-.track-card {
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+/* Track Page Enhancements */
+.track-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: rgba(233, 69, 96, 0.1);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-.track-card .card-body {
-    padding: 40px;
+.tracking-progress-wrapper {
+    position: relative;
+    padding: 0 10px;
 }
 
-.track-btn {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-    border: none;
-    padding: 14px;
-    border-radius: 10px;
+.tracking-progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    text-align: center;
+    color: #ccc;
+    transition: all 0.3s ease;
+}
+
+.step-circle {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.85rem;
     font-weight: 600;
 }
 
-.or-divider {
-    display: flex;
-    align-items: center;
-    margin: 25px 0;
+.step-item.active {
+    color: var(--primary-color);
 }
 
-.or-divider::before,
-.or-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #e0e0e0;
+.step-item.active .step-circle {
+    border-color: var(--primary-color);
+    background: rgba(233, 69, 96, 0.1);
 }
 
-.or-divider span {
-    padding: 0 15px;
-    color: #999;
+.step-item.completed {
+    color: #4CAF50;
+}
+
+.step-item.completed .step-circle {
+    border-color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.progress-bar-line {
+    position: absolute;
+    top: 22px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 4px;
+    z-index: 1;
+}
+
+.progress-bar-line .progress {
+    height: 4px;
+    background-color: #eee;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.item-img-placeholder {
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.smaller {
+    font-size: 0.8rem;
+}
+
+.help-box {
+    border: 1px dashed #ddd;
+    transition: all 0.3s ease;
+}
+
+.help-box:hover {
+    border-color: var(--primary-color);
+    background: #fffafa !important;
+}
+
+@media (max-width: 576px) {
+    .step-label {
+        font-size: 0.75rem;
+    }
+
+    .step-circle {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .progress-bar-line {
+        top: 17px;
+    }
 }
 
 /* Help Page */

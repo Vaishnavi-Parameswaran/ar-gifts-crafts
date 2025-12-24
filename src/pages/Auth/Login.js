@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
 import './Auth.css';
@@ -83,6 +83,11 @@ const Login = () => {
     return (
         <div className="auth-page">
             <Container>
+                <div className="back-nav mb-4">
+                    <Link to="/" className="back-btn">
+                        <FiArrowLeft className="me-2" /> Back to Home
+                    </Link>
+                </div>
                 <Row className="justify-content-center">
                     <Col lg={5} md={7}>
                         <div className="auth-card">

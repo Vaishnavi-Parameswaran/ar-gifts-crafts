@@ -1,8 +1,12 @@
 // Static Pages
-import React from 'react';
-import { Container, Row, Col, Card, Button, Form, Accordion } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, Card, Button, Form, Accordion, Badge, ListGroup, ProgressBar, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FiMail, FiPhone, FiMapPin, FiClock, FiSend } from 'react-icons/fi';
+import {
+    FiMail, FiPhone, FiMapPin, FiClock, FiSend,
+    FiPackage, FiTruck, FiCheckCircle, FiSearch, FiAlertCircle
+} from 'react-icons/fi';
+import { getOrderById } from '../../services/orderService';
 import './Static.css';
 
 // About Page
@@ -266,43 +270,252 @@ export const Shipping = () => (
 
 
 // Track Order
-export const TrackOrder = () => (
-    <div className="static-page track-page">
-        <div className="page-hero">
-            <Container>
-                <h1>Track Your Order</h1>
-                <p>Enter your order details to track shipment</p>
+export const TrackOrder = () => {
+    const [orderId, setOrderId] = useState('');
+    const [email, setEmail] = useState('');
+    const [orderData, setOrderData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleTrack = async (e) => {
+        e.preventDefault();
+        if (!orderId || !email) return;
+
+        setLoading(true);
+        setError('');
+        setOrderData(null);
+
+        try {
+            const order = await getOrderById(orderId.trim());
+            // Verify email match for privacy
+            if (order && (order.customerEmail?.toLowerCase() === email.trim().toLowerCase())) {
+                setOrderData(order);
+            } else {
+                setError('Order not found or email does not match our records.');
+            }
+        } catch (err) {
+            console.error('Tracking error:', err);
+            setError('An error occurred while fetching order details.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getStatusStep = (status) => {
+        switch (status) {
+            case 'pending': return 1;
+            case 'processing': return 2;
+            case 'shipped': return 3;
+            case 'delivered': return 4;
+            default: return 0;
+        }
+    };
+
+    return (
+        <div className="static-page track-page">
+            <div className="page-hero">
+                <Container>
+                    <h1>Track Your Order</h1>
+                    <p>Enter your order details to track shipment status</p>
+                </Container>
+            </div>
+            <Container className="py-5">
+                <Row className="justify-content-center">
+                    <Col lg={8}>
+                        {!orderData ? (
+                            <Card className="track-card border-0 shadow-sm">
+                                <Card.Body className="p-4 p-md-5">
+                                    <div className="text-center mb-4">
+                                        <div className="track-icon-wrapper mb-3">
+                                            <FiSearch size={32} />
+                                        </div>
+                                        <h3>Where is my order?</h3>
+                                        <p className="text-muted">Enter the 12-digit Order ID found in your confirmation email.</p>
+                                    </div>
+
+                                    {error && <Alert variant="danger" className="mb-4">{error}</Alert>}
+
+                                    <Form onSubmit={handleTrack}>
+                                        <Row>
+                                            <Col md={6}>
+                                                <Form.Group className="mb-3">
+                                                    <Form.Label className="fw-bold small">Order ID</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="text"
+                                                        placeholder="e.g. AR2024XYZ123"
+                                                        value={orderId}
+                                                        onChange={(e) => setOrderId(e.target.value)}
+                                                        className="form-control-lg bg-light border-0"
+                                                    />
+                                                </Form.Group>
+                                            </Col>
+                                            <Col md={6}>
+                                                <Form.Group className="mb-3">
+                                                    <Form.Label className="fw-bold small">Email Address</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="email"
+                                                        placeholder="email@example.com"
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
+                                                        className="form-control-lg bg-light border-0"
+                                                    />
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
+                                        <Button
+                                            type="submit"
+                                            className="track-btn w-100 mt-3 btn-lg text-white"
+                                            disabled={loading}
+                                        >
+                                            {loading ? 'Searching...' : 'Track My Order'}
+                                        </Button>
+                                    </Form>
+
+                                    <div className="or-divider mt-5 mb-4">
+                                        <span>OR</span>
+                                    </div>
+                                    <div className="text-center">
+                                        <p className="text-muted mb-0">
+                                            Registered user? <Link to="/login" className="text-primary fw-bold">Sign In</Link> to view full order history.
+                                        </p>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        ) : (
+                            <div className="tracking-results animate-fade-in">
+                                <Button
+                                    variant="link"
+                                    className="text-decoration-none p-0 mb-4 text-muted d-flex align-items-center gap-2"
+                                    onClick={() => setOrderData(null)}
+                                >
+                                    <FiSearch /> Track another order
+                                </Button>
+
+                                <Card className="order-status-card border-0 shadow-sm mb-4">
+                                    <Card.Body className="p-4">
+                                        <div className="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
+                                            <div>
+                                                <h5 className="mb-1">Order #{orderData.orderId}</h5>
+                                                <p className="text-muted small mb-0">Placed on {orderData.createdAt?.toDate ? new Date(orderData.createdAt.toDate()).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : 'N/A'}</p>
+                                            </div>
+                                            <Badge bg={
+                                                orderData.orderStatus === 'delivered' ? 'success' :
+                                                    orderData.orderStatus === 'cancelled' ? 'danger' : 'warning'
+                                            } className="px-3 py-2 text-capitalize fs-6">
+                                                {orderData.orderStatus}
+                                            </Badge>
+                                        </div>
+
+                                        <div className="tracking-progress-wrapper my-5">
+                                            <div className="tracking-progress-steps">
+                                                <div className={`step-item ${getStatusStep(orderData.orderStatus) >= 1 ? 'active' : ''} ${getStatusStep(orderData.orderStatus) > 1 ? 'completed' : ''}`}>
+                                                    <div className="step-circle"><FiPackage /></div>
+                                                    <div className="step-label">Ordered</div>
+                                                </div>
+                                                <div className={`step-item ${getStatusStep(orderData.orderStatus) >= 2 ? 'active' : ''} ${getStatusStep(orderData.orderStatus) > 2 ? 'completed' : ''}`}>
+                                                    <div className="step-circle"><FiClock /></div>
+                                                    <div className="step-label">Processing</div>
+                                                </div>
+                                                <div className={`step-item ${getStatusStep(orderData.orderStatus) >= 3 ? 'active' : ''} ${getStatusStep(orderData.orderStatus) > 3 ? 'completed' : ''}`}>
+                                                    <div className="step-circle"><FiTruck /></div>
+                                                    <div className="step-label">Shipped</div>
+                                                </div>
+                                                <div className={`step-item ${getStatusStep(orderData.orderStatus) >= 4 ? 'active' : ''}`}>
+                                                    <div className="step-circle"><FiCheckCircle /></div>
+                                                    <div className="step-label">Delivered</div>
+                                                </div>
+                                            </div>
+                                            <div className="progress-bar-line">
+                                                <ProgressBar
+                                                    now={
+                                                        orderData.orderStatus === 'pending' ? 12.5 :
+                                                            orderData.orderStatus === 'processing' ? 37.5 :
+                                                                orderData.orderStatus === 'shipped' ? 62.5 :
+                                                                    orderData.orderStatus === 'delivered' ? 100 : 0
+                                                    }
+                                                    variant="primary"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <Row className="mt-4 pt-4 border-top">
+                                            <Col md={6} className="mb-3 mb-md-0">
+                                                <h6 className="fw-bold mb-3"><FiMapPin className="me-2" /> Delivery Address</h6>
+                                                <div className="text-muted small">
+                                                    {typeof orderData.shippingAddress === 'object' ? (
+                                                        <>
+                                                            <p className="mb-1 fw-bold text-dark">{orderData.shippingAddress.name}</p>
+                                                            <p className="mb-1">{orderData.shippingAddress.address}</p>
+                                                            <p className="mb-0">{orderData.shippingAddress.city}, {orderData.shippingAddress.zip}</p>
+                                                        </>
+                                                    ) : (
+                                                        <p className="mb-0">{orderData.shippingAddress}</p>
+                                                    )}
+                                                </div>
+                                            </Col>
+                                            <Col md={6}>
+                                                <h6 className="fw-bold mb-3"><FiClock className="me-2" /> Estimated Arrival</h6>
+                                                <p className="text-dark fw-bold mb-1">
+                                                    {orderData.orderStatus === 'delivered' ? 'Delivered successfully' :
+                                                        orderData.orderStatus === 'shipped' ? 'Coming in 2-3 business days' :
+                                                            'Arrival within 5-7 business days'}
+                                                </p>
+                                                <p className="text-muted small">Tracking updates will be sent to {orderData.customerEmail}</p>
+                                            </Col>
+                                        </Row>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card className="border-0 shadow-sm">
+                                    <Card.Header className="bg-white border-0 py-3">
+                                        <h6 className="mb-0 fw-bold">Items in this shipment</h6>
+                                    </Card.Header>
+                                    <ListGroup variant="flush">
+                                        {orderData.items?.map((item, idx) => (
+                                            <ListGroup.Item key={idx} className="py-3 px-4">
+                                                <div className="d-flex align-items-center gap-3">
+                                                    <div className="item-img-placeholder">
+                                                        <img
+                                                            src={item.image || '/placeholder.png'}
+                                                            alt=""
+                                                            style={{ width: 50, height: 50, objectFit: 'cover', borderRadius: '8px' }}
+                                                            onError={(e) => { e.target.src = 'https://via.placeholder.com/50?text=Product'; }}
+                                                        />
+                                                    </div>
+                                                    <div className="flex-grow-1">
+                                                        <h6 className="mb-0 small fw-bold">{item.name}</h6>
+                                                        <span className="text-muted smaller">Qty: {item.quantity}</span>
+                                                    </div>
+                                                    <div className="text-end">
+                                                        <span className="fw-bold small">Rs. {(item.price * item.quantity).toLocaleString()}</span>
+                                                    </div>
+                                                </div>
+                                            </ListGroup.Item>
+                                        ))}
+                                    </ListGroup>
+                                    <Card.Footer className="bg-light border-0 py-3 px-4 d-flex justify-content-between align-items-center">
+                                        <span className="fw-bold">Total Amount</span>
+                                        <h5 className="mb-0 text-primary fw-bold">Rs. {orderData.totalAmount?.toLocaleString()}</h5>
+                                    </Card.Footer>
+                                </Card>
+                            </div>
+                        )}
+
+                        <div className="mt-5 text-center px-4">
+                            <div className="help-box p-4 rounded-4 bg-white shadow-sm d-inline-block">
+                                <FiAlertCircle className="text-primary mb-2" size={24} />
+                                <h6 className="mb-2">Need Help with your order?</h6>
+                                <p className="text-muted small mb-0">Our support team is available 24/7. <Link to="/contact">Contact Support</Link></p>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
             </Container>
         </div>
-        <Container className="py-5">
-            <Row className="justify-content-center">
-                <Col lg={6}>
-                    <Card className="track-card">
-                        <Card.Body>
-                            <Form>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Order ID</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter your order ID (e.g., AR2024XYZ123)" />
-                                </Form.Group>
-                                <Form.Group className="mb-4">
-                                    <Form.Label>Email Address</Form.Label>
-                                    <Form.Control type="email" placeholder="Email used for the order" />
-                                </Form.Group>
-                                <Button type="submit" className="track-btn w-100">Track Order</Button>
-                            </Form>
-                            <div className="or-divider">
-                                <span>OR</span>
-                            </div>
-                            <p className="text-center">
-                                <Link to="/login">Login to your account</Link> to view all your orders
-                            </p>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
-    </div>
-);
+    );
+};
 
 // Help Center
 export const Help = () => (
@@ -376,6 +589,65 @@ export const Help = () => (
                     </Link>
                 </Col>
             </Row>
+        </Container>
+    </div>
+);
+
+// Careers Page
+export const Careers = () => (
+    <div className="static-page careers-page">
+        <div className="page-hero">
+            <Container>
+                <h1>Grow With Us</h1>
+                <p>Build the future of handmade crafts in Sri Lanka</p>
+            </Container>
+        </div>
+        <Container className="py-5">
+            <Row className="mb-5">
+                <Col lg={8} className="mx-auto text-center">
+                    <h2>Why Join AR ONE?</h2>
+                    <p className="lead">We're on a mission to empower local artisans and bring their unique creations to the global stage. If you're passionate about art, technology, and making an impact, we'd love to hear from you.</p>
+                </Col>
+            </Row>
+
+            <Row className="mb-5">
+                <Col md={4} className="mb-4">
+                    <Card className="h-100 p-3 text-center border-0 shadow-sm">
+                        <Card.Body>
+                            <div className="mb-3 fs-1">🎨</div>
+                            <h3>Creative Culture</h3>
+                            <p>Work in an environment that celebrates creativity, innovation, and out-of-the-box thinking every single day.</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col md={4} className="mb-4">
+                    <Card className="h-100 p-3 text-center border-0 shadow-sm">
+                        <Card.Body>
+                            <div className="mb-3 fs-1">📈</div>
+                            <h3>Growth & Development</h3>
+                            <p>We invest in our people. From training workshops to mentorship, we help you reach your maximum potential.</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col md={4} className="mb-4">
+                    <Card className="h-100 p-3 text-center border-0 shadow-sm">
+                        <Card.Body>
+                            <div className="mb-3 fs-1">🌍</div>
+                            <h3>Meaningful Impact</h3>
+                            <p>Your work directly supports local artisans and helps preserve traditional Sri Lankan crafts for future generations.</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+
+            <div className="text-center p-5 bg-light rounded-4">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>We are always looking for talented individuals in Technology, Marketing, Operations, and Customer Support.</p>
+                <p>Send your CV to: <strong>careers@arone-gifts.com</strong></p>
+                <Button as={Link} to="/contact" variant="outline-primary" className="mt-3">
+                    Inquire About Openings
+                </Button>
+            </div>
         </Container>
     </div>
 );

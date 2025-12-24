@@ -61,7 +61,7 @@ import FirestoreDiagnostics from './pages/Admin/FirestoreDiagnostics';
 import DebugCorporateGifts from './pages/Admin/DebugCorporateGifts';
 
 // Pages - Static
-import { About, FAQ, Privacy, Terms, Shipping, TrackOrder, Help } from './pages/Static/Static';
+import { About, FAQ, Privacy, Terms, Shipping, TrackOrder, Help, Careers } from './pages/Static/Static';
 import Contact from './pages/Contact/Contact';
 import Returns from './pages/Returns/Returns';
 
@@ -213,6 +213,7 @@ function App() {
                 <Route path="/shipping" element={<MainLayout><Shipping /></MainLayout>} />
                 <Route path="/returns" element={<MainLayout><Returns /></MainLayout>} />
                 <Route path="/track-order" element={<MainLayout><TrackOrder /></MainLayout>} />
+                <Route path="/careers" element={<MainLayout><Careers /></MainLayout>} />
 
                 {/* =================== 404 PAGE =================== */}
 
