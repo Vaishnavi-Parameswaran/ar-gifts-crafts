@@ -17,7 +17,7 @@ AR ONE Gifts & Crafts is an Amazon-like marketplace that connects talented artis
 ## 🚀 Tech Stack
 
 - **Frontend**: React.js 19, React Router v6, Bootstrap 5, React Bootstrap
-- **Backend**: Firebase (Authentication, Firestore, Storage, Cloud Functions)
+- **Backend**: Firebase (Authentication, Firestore,)
 - **Styling**: CSS3 with CSS Variables, Bootstrap
 - **Icons**: React Icons (Feather Icons)
 
@@ -70,10 +70,7 @@ npm install
 1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com)
 2. Enable Authentication (Email/Password)
 3. Create a Firestore database
-4. Enable Storage
-5. Copy your Firebase config to `.env`:
 
-```env
 REACT_APP_FIREBASE_API_KEY=your-api-key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
 REACT_APP_FIREBASE_PROJECT_ID=your-project-id
@@ -208,20 +205,6 @@ firebase deploy --only hosting
 
 ```bash
 firebase deploy
-```
-
-## 🔧 Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-REACT_APP_FIREBASE_API_KEY=
-REACT_APP_FIREBASE_AUTH_DOMAIN=
-REACT_APP_FIREBASE_PROJECT_ID=
-REACT_APP_FIREBASE_STORAGE_BUCKET=
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
-REACT_APP_FIREBASE_APP_ID=
-```
 
 ## 📝 Available Scripts
 
@@ -238,9 +221,6 @@ REACT_APP_FIREBASE_APP_ID=
 4. Push to the branch
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
 
